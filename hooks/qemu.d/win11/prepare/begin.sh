@@ -19,6 +19,9 @@ fi
 # Wait to prevent race condition
 sleep 2
 
+# Unload NVIDIA kernel modules
+modprobe -r nvidia_drm nvidia_modeset nvidia_uvm nvidia  || echo "Failed to unload Nvidia Drivers" >> "$LOGFILE"
+
 # Unbind GPU
 virsh nodedev-detach pci_0000_07_00_0 || echo "Failed to detach GPU" >> "$LOGFILE"
 virsh nodedev-detach pci_0000_07_00_1 || echo "Failed to detach GPU Audio" >> "$LOGFILE"

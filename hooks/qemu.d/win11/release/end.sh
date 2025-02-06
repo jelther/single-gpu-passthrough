@@ -7,6 +7,9 @@ echo "$(date) - [HOOK] Rebinding GPU to host" >> "$LOGFILE"
 # Unload VFIO module
 modprobe -r vfio-pci || echo "Failed to unload VFIO" >> "$LOGFILE"
 
+# Load NVIDIA kernel modules
+modprobe nvidia_drm nvidia_modeset nvidia_uvm nvidia  || echo "Failed to load Nvidia Drivers" >> "$LOGFILE"
+
 # Reattach GPU to host
 virsh nodedev-reattach pci_0000_07_00_0 || echo "Failed to reattach GPU" >> "$LOGFILE"
 virsh nodedev-reattach pci_0000_07_00_1 || echo "Failed to reattach GPU Audio" >> "$LOGFILE"
