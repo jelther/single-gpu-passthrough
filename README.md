@@ -18,11 +18,25 @@ All needed files are under hooks folder on this repository.
 sudo rm -rf /etc/libvirt/hooks/qemu.d/win11
 ```
 
+and qemu script
+
+```bash
+sudo rm -rf /etc/libvirt/hooks/qemu
+```
+
+
 1. Copy files to `/etc/libvirt/hooks/` folder 
+
+```bash
+sudo cp -r hooks/qemu.d/* /etc/libvirt/hooks/qemu.d/
+```
+
+and 
 
 ```bash
 sudo cp hooks/qemu /etc/libvirt/hooks/
 ```
+
 
 2. Change permissions to the files using
 
